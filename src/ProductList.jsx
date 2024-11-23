@@ -5,6 +5,7 @@ import { addItem } from './CartSlice';
 import { useDispatch } from 'react-redux';
 
 function ProductList() {
+    const dispatch = useDispatch();
     const [addedToCart, setAddedToCart] = useState({});
     const [showCart, setShowCart] = useState(false);
     const [showPlants, setShowPlants] = useState(false); // State to control the visibility of the About Us page
