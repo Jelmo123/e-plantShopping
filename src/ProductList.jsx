@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 function ProductList() {
     const dispatch = useDispatch();
+    const cart = useSelector(state => state.cart.items);
     const cartCount = useSelector(state => state.cart.count);
     const [addedToCart, setAddedToCart] = useState({});
     const [showCart, setShowCart] = useState(false);
@@ -290,7 +291,11 @@ function ProductList() {
                                         <img src={plant.image} className='product-image'/>
                                         <p>{plant.description}</p>
                                         <p className='product-price'>{plant.cost}</p>
-                                        <button className='product-button' onClick={() => handleAddToCart(plant)}>Add to Cart</button>
+                                        {!cart.some(item => item.name === plant.name) ? (
+                                            <button className='product-button' onClick={() => handleAddToCart(plant)}>Add to Cart</button>
+                                        ) : (
+                                            <button className='product-button added-to-cart'>Added to Cart</button>
+                                        )}
                                     </div>
                                 ))}
                             </div>
